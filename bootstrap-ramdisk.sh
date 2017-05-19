@@ -34,6 +34,7 @@ echo $MAGENTA"Running build-tools, will download, build and install steem witnes
 ./build-tools.sh
 echo $MAGENTA"Copy pre-configured config and data storage structure for steemd..."$RESET
 cp data/. ~/data -a
+mkdir ~/data/blockchain
 echo $MAGENTA"Get compressed blockchain, decompress and add to data storage..."$RESET
 ./get-blockchain.sh ~/data/blockchain
 echo $MAGENTA"Start witness for first time in replay mode on RAM disk..."$RESET
@@ -48,5 +49,5 @@ echo $WHITE"You need to edit the "$CYAN"config.ini"$WHITE" file in "$CYAN"~/data
 echo "add your witness account name and WIF."$RESET
 echo
 echo $WHITE"Then run one of the following:"$RESET
-echo $GREEN"   witness.sh : start witness"$RESET
-echo $GREEN"   witness-ramdisk.sh : start witness on RAM disk"$RESET
+echo $GREEN"   witness.sh          : start witness"$RESET
+echo $GREEN"   witness-ramdisk.sh  : start witness on RAM disk"$RESET

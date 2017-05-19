@@ -34,7 +34,7 @@ echo $CYAN"Install decompression tools..."$RESET
 apt-get update
 apt-get install -y pixz
 
-echo $CYAN"Download blockchain to temp location..."$RESET
+echo $CYAN"Download blockchain..."$RESET
 pushd $1 >/dev/null
 wget https://gtg.steem.house/get/blockchain.xz/block_log.xz
 

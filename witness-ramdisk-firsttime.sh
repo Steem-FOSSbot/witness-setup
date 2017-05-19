@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# steemd-ramdisk.sh - a script to build steemd and cli_wallet. Aimed at Ubuntu Server 16.04 LTS
+# witness-ramdisk-firsttime.sh - start steem witness using RAM disk for shared memory, first time run (with blockchain replay)
 
-usage="Usage: steemd-ramdisk.sh [data-location] [ramdisk-size-in-MB]"
+usage="Usage: (as root) witness-ramdisk-firsttime.sh [data-location] [ram-disk-size-in-MB]"
 
 # colors
 BOLD="$(tput bold)"
@@ -15,16 +15,17 @@ CYAN="$(tput setaf 6)"
 WHITE="$(tput setaf 7)"
 RESET="$(tput sgr0)"
 
-echo $GREEN"steemd-ramdisk, run steemd on ramdisk"
+echo $GREEN"witness-ramdisk-firsttime, start steem witness using RAM disk for shared memory, first time run (with blockchain replay)"
 
 # running as root
 if [ "$EUID" -ne 0 ]
 then
 	echo $RED"Please run this script as root"$RESET
+	echo $YELLOW$usage$RESET
 	exit
 fi
 # check parameters exist
-if [ $# -eq 0 ]
+if [ $# -ne 2 ]
 then
 	echo $YELLOW$usage$RESET
 	exit
@@ -34,11 +35,13 @@ echo $CYAN"Create and mount RAM disk..."$RESET
 mkdir -p /media/ramdisk
 mount -t tmpfs -o size=$2M tmpfs /media/ramdisk/
 echo $CYAN"Starting steemd using RAM disk for shared memory..."$RESET
+echo $YELLOW"Note: press Ctrl+C at any time to attempt clean exit"$RESET
+echo $CYAN"[in replay mode]"$RESET
 steemd -d $1 --shared-file-dir /media/ramdisk --replay-blockchain
-echo $YELLOW"** steemd stopped"$RESET
+echo $RED"steemd stopped"$RESET
 
 echo $CYAN"Unmount and free RAM disk..."$RESET
 umount /media/ramdisk
 
 echo
-echo $GREEN"steemd-ramdisk finished"$RESET
+echo $GREEN"witness-ramdisk-firsttime finished"$RESET

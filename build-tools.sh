@@ -30,6 +30,7 @@ apt-get install -y libboost-chrono-dev libboost-context-dev libboost-coroutine-d
 apt-get install -y doxygen libncurses5-dev libreadline-dev perl
 
 echo $CYAN"Downloading steem source..."$RESET
+pushd ~ >/dev/null
 git clone https://github.com/steemit/steem
 cd steem
 git checkout stable
@@ -48,8 +49,7 @@ make -j$(nproc) cli_wallet
 echo $CYAN"Install tools..."$RESET
 make install
 
-cd ..
-cd ..
+popd >/dev/null
 
 echo
 echo $GREEN"Finished installing steem witness tools"$RESET

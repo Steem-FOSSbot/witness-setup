@@ -24,7 +24,7 @@ then
 	exit
 fi
 # check parameters exist
-if [ $# < 2 ]
+if [ $# -eq 0 ]
 then
 	echo $YELLOW$usage$RESET
 	exit
@@ -33,13 +33,10 @@ fi
 echo $CYAN"Create and mount RAM disk..."$RESET
 mkdir -p /media/ramdisk
 mount -t tmpfs -o size=$2M tmpfs /media/ramdisk/
-echo $CYAN"Copy blockchain to RAM disk..."$RESET
-cp $1/. /media/ramdisk/data -a
-steemd -d /media/ramdisk/data --replay-blockchain
+echo $CYAN"Starting steemd using RAM disk for shared memory..."$RESET
+steemd -d $1 --shared-file-dir /media/ramdisk --replay-blockchain
 echo $YELLOW"** steemd stopped"$RESET
 
-echo $CYAN"Copy updated blockchain data back to original location..."$RESET
-cp /media/ramdisk/data/. $1 -a -f
 echo $CYAN"Unmount and free RAM disk..."$RESET
 umount /media/ramdisk
 

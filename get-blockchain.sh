@@ -24,7 +24,7 @@ then
 	exit
 fi
 # check parameters exist
-if [ $# < 1 ]
+if [ $# -eq 0 ]
 then
 	echo $YELLOW$usage$RESET
 	exit
@@ -35,16 +35,13 @@ apt-get update
 apt-get install -y pixz
 
 echo $CYAN"Download blockchain to temp location..."$RESET
-pushd ~ >/dev/null
-mkdir tmp
-cd tmp
+pushd $1 >/dev/null
 wget https://gtg.steem.house/get/blockchain.xz/block_log.xz
 
 echo $CYAN"Decompress blockchain..."$RESET
-pixz -d ./block_log.xz
+pixz -d block_log.xz
 
-echo $CYAN"Copy to target location..."$RESET
-cp ./block_log $1
+popd >/dev/null
 
 echo
 echo $GREEN"get-blockchain finished"$RESET

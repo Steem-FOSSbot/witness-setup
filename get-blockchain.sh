@@ -36,7 +36,8 @@ apt-get install -y pixz
 
 echo $CYAN"Download blockchain..."$RESET
 pushd $1 >/dev/null
-wget https://gtg.steem.house/get/blockchain.xz/block_log.xz
+#wget https://gtg.steem.house/get/blockchain.xz/block_log.xz
+wget http://seed.steemnode.world/block_log.xz
 
 echo $CYAN"Decompress blockchain..."$RESET
 pixz -d block_log.xz

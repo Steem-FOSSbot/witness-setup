@@ -31,14 +31,6 @@ apt-get install -y doxygen libncurses5-dev libreadline-dev perl
 
 pip install Jinja2
 
-echo pushd /tmp >/dev/null
-echo wget http://www.cmake.org/files/v3.9/cmake-3.9.0.tar.gz
-echo tar xf cmake-3.9.0.tar.gz
-echo cd cmake-3.9.0
-echo ./configure
-echo make
-echo popd >/dev/null
-
 echo $CYAN"Downloading steem source..."$RESET
 pushd ~ >/dev/null
 git clone https://github.com/steemit/steem

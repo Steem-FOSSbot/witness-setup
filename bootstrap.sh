@@ -30,6 +30,8 @@ then
 	exit
 fi
 
+echo $MAGENTA"Securing server..."$RESET
+./secure.sh
 echo $MAGENTA"Running build-tools, will download, build and install steem witness tools..."$RESET
 ./build-tools.sh
 echo $MAGENTA"Copy pre-configured config and data storage structure for steemd..."$RESET

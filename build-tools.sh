@@ -25,7 +25,7 @@ fi
 # update system
 echo $CYAN"Installing dependencies..."$RESET
 apt-get update
-apt-get install -y autoconf automake g++ git libssl-dev libtool make pkg-config python3 python3-jinja2
+apt-get install -y autoconf automake cmake g++ git libssl-dev libtool make pkg-config python3 python3-jinja2
 apt-get install -y libboost-chrono-dev libboost-context-dev libboost-coroutine-dev libboost-date-time-dev libboost-filesystem-dev libboost-iostreams-dev libboost-locale-dev libboost-program-options-dev libboost-serialization-dev libboost-signals-dev libboost-system-dev libboost-test-dev libboost-thread-dev
 apt-get install -y doxygen libncurses5-dev libreadline-dev perl
 

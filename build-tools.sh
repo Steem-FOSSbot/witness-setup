@@ -35,7 +35,7 @@ echo $CYAN"Downloading steem source..."$RESET
 pushd ~ >/dev/null
 git clone https://github.com/steemit/steem
 cd steem
-git checkout v0.19.1rc1
+git checkout v0.19.2
 
 echo $CYAN"Set up build environment..."$RESET
 git submodule update --init --recursive
